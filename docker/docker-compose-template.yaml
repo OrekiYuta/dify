@@ -2,7 +2,11 @@ x-shared-env: &shared-api-worker-env
 services:
   # API service
   api:
+<<<<<<< HEAD
     image: langgenius/dify-api:1.1.3
+=======
+    image: dockerpull.pw/langgenius/dify-api:1.1.2
+>>>>>>> feature-patcher
     restart: always
     environment:
       # Use the shared environment variables.
@@ -29,7 +33,11 @@ services:
   # worker service
   # The Celery worker for processing the queue.
   worker:
+<<<<<<< HEAD
     image: langgenius/dify-api:1.1.3
+=======
+    image: dockerpull.pw/langgenius/dify-api:1.1.2
+>>>>>>> feature-patcher
     restart: always
     environment:
       # Use the shared environment variables.
@@ -53,7 +61,11 @@ services:
 
   # Frontend web application.
   web:
+<<<<<<< HEAD
     image: langgenius/dify-web:1.1.3
+=======
+    image: dockerpull.pw/langgenius/dify-web:1.1.2
+>>>>>>> feature-patcher
     restart: always
     environment:
       CONSOLE_API_URL: ${CONSOLE_API_URL:-}
@@ -74,7 +86,7 @@ services:
 
   # The postgres database.
   db:
-    image: postgres:15-alpine
+    image: dockerpull.pw/postgres:15-alpine
     restart: always
     environment:
       PGUSER: ${PGUSER:-postgres}
@@ -97,7 +109,7 @@ services:
 
   # The redis cache.
   redis:
-    image: redis:6-alpine
+    image: dockerpull.pw/redis:6-alpine
     restart: always
     environment:
       REDISCLI_AUTH: ${REDIS_PASSWORD:-difyai123456}
@@ -111,7 +123,11 @@ services:
 
   # The DifySandbox
   sandbox:
+<<<<<<< HEAD
     image: langgenius/dify-sandbox:0.2.11
+=======
+    image: dockerpull.pw/langgenius/dify-sandbox:0.2.10
+>>>>>>> feature-patcher
     restart: always
     environment:
       # The DifySandbox configurations
@@ -134,7 +150,7 @@ services:
 
   # plugin daemon
   plugin_daemon:
-    image: langgenius/dify-plugin-daemon:0.0.6-local
+    image: dockerpull.pw/langgenius/dify-plugin-daemon:0.0.6-local
     restart: always
     environment:
       # Use the shared environment variables.
@@ -164,7 +180,7 @@ services:
   # for more information, please refer to
   # https://docs.dify.ai/learn-more/faq/install-faq#id-18.-why-is-ssrf_proxy-needed
   ssrf_proxy:
-    image: ubuntu/squid:latest
+    image: dockerpull.pw/ubuntu/squid:latest
     restart: always
     volumes:
       - ./ssrf_proxy/squid.conf.template:/etc/squid/squid.conf.template
@@ -184,7 +200,7 @@ services:
   # Certbot service
   # use `docker-compose --profile certbot up` to start the certbot service.
   certbot:
-    image: certbot/certbot
+    image: dockerpull.pw/certbot/certbot
     profiles:
       - certbot
     volumes:
@@ -204,7 +220,7 @@ services:
   # The nginx reverse proxy.
   # used for reverse proxying the API service and Web service.
   nginx:
-    image: nginx:latest
+    image: dockerpull.pw/nginx:latest
     restart: always
     volumes:
       - ./nginx/nginx.conf.template:/etc/nginx/nginx.conf.template
@@ -243,7 +259,7 @@ services:
 
   # The Weaviate vector store.
   weaviate:
-    image: semitechnologies/weaviate:1.19.0
+    image: dockerpull.pw/semitechnologies/weaviate:1.19.0
     profiles:
       - ''
       - weaviate
@@ -268,7 +284,7 @@ services:
   # Qdrant vector store.
   # (if used, you need to set VECTOR_STORE to qdrant in the api & worker service.)
   qdrant:
-    image: langgenius/qdrant:v1.7.3
+    image: dockerpull.pw/langgenius/qdrant:v1.7.3
     profiles:
       - qdrant
     restart: always
@@ -312,7 +328,7 @@ services:
 
   # The pgvector vector database.
   pgvector:
-    image: pgvector/pgvector:pg16
+    image: dockerpull.pw/pgvector/pgvector:pg16
     profiles:
       - pgvector
     restart: always
@@ -339,7 +355,7 @@ services:
 
   # pgvecto-rs vector store
   pgvecto-rs:
-    image: tensorchord/pgvecto-rs:pg16-v0.3.0
+    image: dockerpull.pw/tensorchord/pgvecto-rs:pg16-v0.3.0
     profiles:
       - pgvecto-rs
     restart: always
@@ -361,7 +377,7 @@ services:
 
   # Chroma vector database
   chroma:
-    image: ghcr.io/chroma-core/chroma:0.5.20
+    image: dockerpull.pw/ghcr.io/chroma-core/chroma:0.5.20
     profiles:
       - chroma
     restart: always
